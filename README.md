@@ -1,5 +1,13 @@
-# Jubeat
+# 유비트
 
-Supported Versions:
+플러그인 버전: **v0.0.1**
 
-- Festo
+## 지원하는 버전
+
+- 페스토
+
+## 변경 사항
+
+### 0.0.1
+
+- shopinfo.regist 추가

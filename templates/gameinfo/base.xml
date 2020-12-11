@@ -1,0 +1,8 @@
+<<%= module %>>
+  <data>
+    <% if (module == "shopinfo") { %>
+      <cabid __type="u32">1</cabid>
+      <locationid __type="str"><%= locid %></cabid>
+    <% } %>
+  </data>
+</<%= module %>>

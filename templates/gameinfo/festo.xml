@@ -1,0 +1,81 @@
+<<%= module %>>
+  <data>
+    <% if (module == "shopinfo") { %>
+      <cabid __type="u32">1</cabid>
+      <locationid __type="str"><%= locid %></cabid>
+      <tax_phase __type="u8"><%= tax %></cabid>
+      <facility>
+        <exist __type="u32">1</exist>
+      </facility>
+    <% } %>
+    
+    <info>
+      <event_info></event_info>
+      <share_music></share_music>
+      <genre_def_music></genre_def_music>
+      <black_jacket_list __type="s32">0</black_jacket_list>
+      <weekly_music></weekly_music>
+      <white_music_list __type="s32">-1</white_music_list>
+      <white_marker_list __type="s32">-1</white_marker_list>
+      <white_theme_list __type="s32">-1</white_theme_list>
+      <open_music_list __type="s32">-1</open_music_list>
+      <shareable_music_list __type="s32">-1</shareable_music_list>
+      <hot_music_list __type="s32" __count="64">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -4194304 -2080769 -1 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</hot_music_list>
+
+      <jbox>
+        <point __type="s32">0</point>
+
+        <emblem>
+          <normal>
+            <index __type="s16">2</index>
+          </normal>
+          
+          <premium>
+            <index __type="s16">1</index>
+          </premium>
+        </emblem>
+      </jbox>
+
+      <born>
+        <status __type="s8">1</status>
+        <year __type="s16">0</year>
+      </born>
+
+      <expert_option>
+        <is_available __type="bool">1</is_available>
+      </expert_option>
+
+      <konami_logo_50th>
+        <is_available __type="bool">1</is_available>
+      </konami_logo_50th>
+
+      <all_music_matching>
+        <is_available __type="bool">1</is_available>
+      </all_music_matching>
+
+      <question_list></question_list>
+
+      <department>
+        <shop_list></shop_list>
+      </department>
+
+      <team_battle></team_battle>
+
+      <qr>
+        <flag __type="s32">0</flag>
+      </qr>
+
+      <course_list></course_list>
+
+      <emo_list></emo_list>
+
+      <hike_event></hike_event>
+
+      <tip_list></tip_list>
+
+      <festo_dungeon>
+        <etime __type="u64">0</etime>
+      </festo_dungeon>
+    </info>
+  </data>
+</<%= module %>>
