@@ -1,13 +1,7 @@
-# 유비트
+# Jubeat Plugin
 
-플러그인 버전: **v0.0.1**
+Jubeat Plugin for Asphyxia Core
 
-## 지원하는 버전
+# Supported Versions
 
-- 페스토
-
-## 변경 사항
-
-### 0.0.1
-
-- shopinfo.regist 추가
+- Festo
