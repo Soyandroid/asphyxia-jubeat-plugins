@@ -69,6 +69,8 @@ const GetProfile = async (req: EamuseInfo, data: any, send: EamuseSend) => {
         name: K.ITEM("str", profile.name),
         event_flag: K.ITEM("u64", BigInt(profile.eventFlag)),
         info: {
+          jubility: K.ITEM("s16", 0),
+          jubility_yday: K.ITEM("s16", 0),
           tune_cnt: K.ITEM("s32", 0),
           save_cnt: K.ITEM("s32", 0),
           saved_cnt: K.ITEM("s32", 0),
@@ -94,6 +96,7 @@ const GetProfile = async (req: EamuseInfo, data: any, send: EamuseSend) => {
           sort: K.ITEM("s8", profile.last.sort),
           category: K.ITEM("s8", profile.last.category),
           expert_option: K.ITEM("s8", profile.last.expertOption),
+          dig_select: K.ITEM("s32", 0),
 
           settings: {
             marker: K.ITEM("s8", profile.settings.marker),
@@ -124,10 +127,15 @@ const GetProfile = async (req: EamuseInfo, data: any, send: EamuseSend) => {
             marker_list: K.ARRAY("s32", new Array(16).fill(0)),
           },
         },
-        rivallist: profile.rivals.map((rival) => ({
-          jid: K.ITEM("s32", rival.jubeatId),
-          name: K.ITEM("str", rival.name),
-        })),
+        rivallist: {
+          rival: profile.rivals.map((rival) => ({
+            jid: K.ITEM("s32", rival.jubeatId),
+            name: K.ITEM("str", rival.name),
+            career: {
+              level: K.ITEM("s16", 0),
+            },
+          })),
+        },
         lab_edit_seq: K.ATTR({ count: "0" }, { seq: [] }),
         fc_challenge: {
           today: {
@@ -141,6 +149,10 @@ const GetProfile = async (req: EamuseInfo, data: any, send: EamuseSend) => {
         },
         official_news: {
           news_list: { news: [] },
+        },
+        news: {
+          checked: K.ITEM("s16", 0),
+          checked_flag: K.ITEM("u32", 0),
         },
         history: K.ATTR({ count: "0" }, { tune: [] }),
         free_first_play: {
@@ -178,6 +190,78 @@ const GetProfile = async (req: EamuseInfo, data: any, send: EamuseSend) => {
           },
         },
         fill_in_category: {
+          no_gray_flag_list: K.ARRAY("s32", [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+          ]),
+          all_yellow_flag_list: K.ARRAY("s32", [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+          ]),
+          full_combo_flag_list: K.ARRAY("s32", [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+          ]),
+          excellent_flag_list: K.ARRAY("s32", [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+          ]),
           normal: {
             no_gray_flag_list: K.ARRAY("s32", [
               0,
@@ -344,10 +428,117 @@ const GetProfile = async (req: EamuseInfo, data: any, send: EamuseSend) => {
         department: {
           shop_list: { shop: [] },
         },
+        jubility: K.ATTR(
+          { param: "100" },
+          {
+            target_music_list: {},
+          }
+        ),
+        clan_course_list: {},
+        drop_list: {
+          drop: (() => {
+            const t = [];
+            const t2 = [];
+
+            for (let i = 0; i > 10; i++) {
+              t2.push(
+                K.ATTR(
+                  { id: String(i + 1) },
+                  {
+                    num: K.ITEM("s32", 999),
+                  }
+                )
+              );
+            }
+
+            for (let i = 0; i > 10; i++) {
+              t.push(
+                K.ATTR(
+                  { id: String(i + 1) },
+                  {
+                    exp: K.ITEM("s32", 0),
+                    flag: K.ITEM("s32", 0),
+
+                    item_list: t2,
+                  }
+                )
+              );
+            }
+
+            return t;
+          })(),
+        },
+
+        team: K.ATTR(
+          { id: "0" },
+          {
+            section: K.ITEM("s32", 0),
+            street: K.ITEM("s32", 0),
+            house_number_1: K.ITEM("s32", 0),
+            house_number_2: K.ITEM("s32", 0),
+
+            move: K.ATTR({
+              id: "1",
+              section: "1",
+              street: "1",
+              house_number_1: "1",
+              house_number_2: "1",
+            }),
+          }
+        ),
+
+        daily_bonus_list: {},
+        ticket_list: {},
+
+        digdig: {
+          flag: K.ITEM("u64", BigInt(0)),
+
+          main: {
+            stage: K.ATTR(
+              { number: "0" },
+              {
+                point: K.ITEM("s32", 0),
+                param: K.ITEM("s32", 0),
+              }
+            ),
+          },
+
+          eternal: {
+            ratio: K.ITEM("s32", 0),
+            used_point: K.ITEM("s64", BigInt(0)),
+            point: K.ITEM("s64", BigInt(0)),
+
+            cube: {
+              state: K.ITEM("s8", 0),
+
+              item: [],
+            },
+
+            norma: {
+              till_time: K.ITEM("s64", BigInt(0)),
+              kind: K.ITEM("s32", 0),
+              value: K.ITEM("s32", 0),
+              param: K.ITEM("s32", 0),
+            },
+
+            old: {
+              need_point: K.ITEM("s32", 0),
+              point: K.ITEM("s32", 0),
+              excavated_point: K.ITEM("s32", 0),
+              excavated: K.ITEM("s32", 0),
+              param: K.ITEM("s32", 0),
+
+              music_list: {},
+            },
+          },
+        },
+
+        unlock: {},
+
+        generic_dig: {},
       },
     },
   };
-  console.dir(sendObj.data.player.course_list, { depth: null });
   return send.object(sendObj, { compress: true });
 };
 

@@ -46,13 +46,12 @@ const Refresh = (req: EamuseInfo, data: any, send: EamuseSend) => {
   );
 };
 
-const Report = (req: EamuseInfo, data: any, send: EamuseSend) => {
-  return send.object(
+const Report = (req: EamuseInfo, data: any, send: EamuseSend) =>
+  send.object(
     {
       data: { refresh_intr: K.ITEM("s16", 0) },
     },
     { compress: true }
   );
-};
 
 export default { Check, Entry, Refresh, Report };

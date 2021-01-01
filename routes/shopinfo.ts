@@ -45,6 +45,28 @@ export const GameInfo = {
       is_available: K.ITEM("bool", false),
     },
 
+    tsumtsum: {
+      is_available: K.ITEM("bool", false),
+    },
+
+    nagatanien: {
+      is_available: K.ITEM("bool", false),
+    },
+
+    digdig: {
+      stage_list: {
+        stage: [
+          K.ATTR({ number: "1" }, { state: K.ITEM("u8", 1) }),
+          K.ATTR({ number: "2" }, { state: K.ITEM("u8", 1) }),
+          K.ATTR({ number: "3" }, { state: K.ITEM("u8", 1) }),
+          K.ATTR({ number: "4" }, { state: K.ITEM("u8", 1) }),
+          K.ATTR({ number: "5" }, { state: K.ITEM("u8", 1) }),
+          K.ATTR({ number: "6" }, { state: K.ITEM("u8", 1) }),
+          K.ATTR({ number: "7" }, { state: K.ITEM("u8", 1) }),
+        ],
+      },
+    },
+
     department: {
       shop_list: {
         shop: shopList.map((shop, i) =>
@@ -97,7 +119,6 @@ export const GameInfo = {
         )
       ),
     },
-
     emo_list: {
       emo: emoList.map((emo, i) =>
         K.ATTR(
@@ -114,7 +135,6 @@ export const GameInfo = {
 
 export default (_: EamuseInfo, data: any, send: EamuseSend) => {
   const locId = $(data).element("shop").content("locationid");
-  console.dir(GameInfo.info.course_list, { depth: null });
   return send.object(
     {
       data: {
