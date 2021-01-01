@@ -393,4 +393,7 @@ const Meeting = (req: EamuseInfo, data: any, send: EamuseSend) => {
   });
 };
 
-export default { GetProfile, GetScores, Meeting };
+const Getinfo = (req: EamuseInfo, data: any, send: EamuseSend) =>
+  send.object({ data: GameInfo }, { compress: true });
+
+export default { GetProfile, GetScores, Meeting, Getinfo };

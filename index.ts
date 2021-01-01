@@ -13,6 +13,7 @@ export function register() {
 
   R.Route("shopinfo.regist", ShopInfo);
 
+  R.Route("gametop.get_info", GameTop.Getinfo);
   R.Route("gametop.regist", GameTop.GetProfile);
   R.Route("gametop.get_pdata", GameTop.GetProfile);
   R.Route("gametop.get_mdata", GameTop.GetScores);
