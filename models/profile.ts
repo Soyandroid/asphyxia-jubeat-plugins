@@ -1,3 +1,4 @@
+import { Emo } from "./emo";
 import { Rival } from "./rival";
 
 export interface JubeatProfile {
@@ -39,4 +40,6 @@ export interface JubeatProfile {
   };
 
   rivals: Rival[];
+
+  emo: Emo[];
 }

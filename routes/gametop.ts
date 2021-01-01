@@ -1,5 +1,6 @@
-import { GameInfo } from "./shopinfo";
+import { GameInfo, emoList } from "./shopinfo";
 import { JubeatProfile } from "../models/profile";
+import { FestoCourse } from "../static/courses";
 
 const GetProfile = async (req: EamuseInfo, data: any, send: EamuseSend) => {
   const {
@@ -50,6 +51,7 @@ const GetProfile = async (req: EamuseInfo, data: any, send: EamuseSend) => {
           hazard: 0,
         },
         rivals: [],
+        emo: [],
       });
     } catch {
       return send.deny();
@@ -161,8 +163,19 @@ const GetProfile = async (req: EamuseInfo, data: any, send: EamuseSend) => {
         team_battle: {},
         server: {},
         course_list: {
-          course: [],
-          category_list: { category: [] },
+          course: FestoCourse.map((course, i) =>
+            K.ATTR({ id: String(i + 1) }, { status: K.ITEM("s8", 0) })
+          ),
+          category_list: {
+            category: [
+              K.ATTR({ id: String(1) }, { is_display: K.ITEM("bool", true) }),
+              K.ATTR({ id: String(2) }, { is_display: K.ITEM("bool", true) }),
+              K.ATTR({ id: String(3) }, { is_display: K.ITEM("bool", true) }),
+              K.ATTR({ id: String(4) }, { is_display: K.ITEM("bool", true) }),
+              K.ATTR({ id: String(5) }, { is_display: K.ITEM("bool", true) }),
+              K.ATTR({ id: String(6) }, { is_display: K.ITEM("bool", true) }),
+            ],
+          },
         },
         fill_in_category: {
           normal: {
@@ -314,7 +327,19 @@ const GetProfile = async (req: EamuseInfo, data: any, send: EamuseSend) => {
             ]),
           },
         },
-        emo_list: { emo: [] },
+        emo_list: {
+          emo: emoList.map((emo, i) => {
+            const playerEmo = profile.emo[i];
+            if (!playerEmo) {
+              return K.ATTR({ id: String(i + 1) }, { num: K.ITEM("s32", 0) });
+            } else {
+              return K.ATTR(
+                { id: String(playerEmo.id) },
+                { num: K.ITEM("s32", playerEmo.value) }
+              );
+            }
+          }),
+        },
         eamuse_gift_list: { gift: [] },
         department: {
           shop_list: { shop: [] },
@@ -322,7 +347,7 @@ const GetProfile = async (req: EamuseInfo, data: any, send: EamuseSend) => {
       },
     },
   };
-
+  console.dir(sendObj.data.player.course_list, { depth: null });
   return send.object(sendObj, { compress: true });
 };
 

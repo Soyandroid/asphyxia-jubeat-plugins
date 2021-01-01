@@ -2,6 +2,7 @@ import ShopInfo from "./routes/shopinfo";
 import GameTop from "./routes/gametop";
 import Lobby from "./routes/lobby";
 import Recommend from "./routes/recommend";
+import Gameend from "./routes/gameend";
 
 export function register() {
   R.GameCode("L44");
@@ -21,6 +22,9 @@ export function register() {
   R.Route("lobby.entry", Lobby.Entry);
   R.Route("lobby.refresh", Lobby.Refresh);
   R.Route("lobby.report", Lobby.Report);
+
+  R.Route("gameend.regist", Gameend.Regist);
+  R.Route("gameend.final", Gameend.Final);
 
   R.Unhandled();
 }
