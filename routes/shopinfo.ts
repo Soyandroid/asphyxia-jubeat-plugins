@@ -28,10 +28,10 @@ export const emoList = [
 
 export const GameInfo = {
   info: {
-    white_music_list: K.ARRAY("s32", new Array(32).fill(-1)),
+    white_music_list: K.ARRAY("s32", new Array(64).fill(-1)),
     white_marker_list: K.ARRAY("s32", new Array(16).fill(-1)),
     white_theme_list: K.ARRAY("s32", new Array(16).fill(-1)),
-    open_music_list: K.ARRAY("s32", new Array(32).fill(-1)),
+    open_music_list: K.ARRAY("s32", new Array(64).fill(-1)),
 
     expert_option: {
       is_available: K.ITEM("bool", true),

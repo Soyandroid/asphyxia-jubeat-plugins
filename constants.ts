@@ -1,0 +1,15 @@
+export enum VersionConstants {
+  JUBEAT = 1,
+  RIPPLES,
+  RIPPLES_APPEND,
+  KNIT,
+  KNIT_APPEND,
+  COPIOUS,
+  COPIOUS_APPEND,
+  SAUCER,
+  SAUCER_FULFILL,
+  PROP,
+  QUBELL,
+  CLAN,
+  FESTO,
+}

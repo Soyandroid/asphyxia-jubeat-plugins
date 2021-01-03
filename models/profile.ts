@@ -1,8 +1,9 @@
-import { Emo } from "./emo";
-import { Rival } from "./rival";
+import { VersionConstants } from "../constants";
 
 export interface JubeatProfile {
   collection: "profile";
+
+  profile_version: VersionConstants;
 
   jubeatId: number;
   name: string;
@@ -38,8 +39,4 @@ export interface JubeatProfile {
     hard: number;
     hazard: number;
   };
-
-  rivals: Rival[];
-
-  emo: Emo[];
 }

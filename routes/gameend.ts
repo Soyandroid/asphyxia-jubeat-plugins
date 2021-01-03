@@ -4,7 +4,7 @@ const Regist = async (req: EamuseInfo, { data }, send: EamuseSend) => {
   const player = $(data).element("player");
 
   if (!player) {
-    // Guest Player
+    return send.success({ compress: true });
   } else if (player) {
     const refid = player.content("refid");
 
